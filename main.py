@@ -4,7 +4,7 @@ from InquirerPy import inquirer
 def connectdb():
     try:
         client = MongoClient('mongodb://localhost:27017')
-        db = client['trabajo-mongo-2']
+        db = client['trabajo-mongo']
         return db
     except:
         print('Error al conectarse a la base de datos')
@@ -22,7 +22,7 @@ def get_alumno():
 # 2.2 Se muestren los documentos que cumplen con 1 condición (Dinamicamente)
 def get_alumno_by_condition():
     db = connectdb()
-    campo = inquirer.select(message="Elige el campo para filtrar:", choices=['name', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
+    campo = inquirer.select(message="Elige el campo para filtrar:", choices=['nombre', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
     # elije entre las opciones de condicion 
     condicion = inquirer.select(message='Elige la condicion', choices=['== (igual que)', '!= (distinto que)', '> (mayor que)', '< (menor que)', '>= (mayor o igual que)', '<= menor o igual que']).execute()
     valor = inquirer.text(message="Ingresa el valor:",).execute()
@@ -42,11 +42,11 @@ def get_alumno_by_condition():
 def get_alumno_by_two_conditions(operator):
     db = connectdb()
 
-    campo_1 = inquirer.select(message="Elige el primer campo para filtrar:", choices=['name', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
+    campo_1 = inquirer.select(message="Elige el primer campo para filtrar:", choices=['nombre', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
     condicion_1 = inquirer.select(message='Elige la primer condición', choices=['== (igual que)', '!= (distinto que)', '> (mayor que)', '< (menor que)', '>= (mayor o igual que)', '<= menor o igual que']).execute()
     valor_1 = inquirer.text(message="Ingresa el primer valor:",).execute()
 
-    campo_2 = inquirer.select(message="Elige el segundo campo para filtrar:", choices=['name', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
+    campo_2 = inquirer.select(message="Elige el segundo campo para filtrar:", choices=['nombre', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
     condicion_2 = inquirer.select(message='Elige la segunda condición', choices=['== (igual que)', '!= (distinto que)', '> (mayor que)', '< (menor que)', '>= (mayor o igual que)', '<= menor o igual que']).execute()
     valor_2 = inquirer.text(message="Ingresa el segundo valor:",).execute()
 
@@ -63,7 +63,7 @@ def get_alumno_by_two_conditions(operator):
 def updated_value():
     db = connectdb()
 
-    campo_filtro = inquirer.select(message="elige el campo para filtrar el documento:", choices=['name', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
+    campo_filtro = inquirer.select(message="elige el campo para filtrar el documento:", choices=['nombre', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
     valor_filtrar = inquirer.text(message="Escribe el valor para filtrar:").execute()
 
     campo = inquirer.text(message="Escribe el campo para actualizar:").execute()
@@ -103,7 +103,7 @@ def update_value_min():
 def delete_alumno():
     db = connectdb()
 
-    campo = inquirer.select(message="elige el campo para filtrar el documento:", choices=['name', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
+    campo = inquirer.select(message="elige el campo para filtrar el documento:", choices=['nombre', 'apellido', 'edad', 'email', 'carrera', 'asignaturas']).execute()
     valor = inquirer.text(message="Escribe el valor para filtrar:").execute()
 
     try:
